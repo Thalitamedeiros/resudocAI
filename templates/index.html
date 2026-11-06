@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resumidor de documentos com IA</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+<div class="app">
+  <aside class="lateral" aria-label="Menu">
+    <div class="logo" aria-hidden="true">✦</div>
+  </aside>
+
+  <main class="principal">
+    <header>
+      <h1>Resumidor de documentos com IA</h1>
+      <p>Envie seu documento. Receba um resumo claro e preciso na hora.</p>
+    </header>
+
+    <div class="paineis">
+      <section class="painel" aria-labelledby="t-envio">
+        <div class="painel-topo">
+          <h2 id="t-envio">Seu conteúdo</h2>
+          <div class="botoes">
+            <button class="btn" id="adicionar" type="button">+ Adicionar</button>
+            <button class="btn azul" id="botao" type="button" disabled>✦ Processar</button>
+          </div>
+        </div>
+
+        <input type="file" id="entrada" accept=".txt,.md,.pdf,.docx" hidden>
+        <ul class="lista" id="lista"></ul>
+
+        <label class="zona" id="zona" tabindex="0">
+          <svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-7.97A6 6 0 0 1 18 9.5 4.5 4.5 0 0 1 17.5 18M12 12v8M9 15l3-3 3 3"/></svg>
+          <span><strong>Arraste o arquivo aqui</strong><small>Suporta TXT, MD, PDF e DOCX, até 15 MB</small></span>
+        </label>
+        <div id="erro" role="alert"></div>
+      </section>
+
+      <div class="conector" aria-hidden="true">✦</div>
+
+      <section class="painel" aria-labelledby="t-resumo" aria-live="polite">
+        <div class="painel-topo">
+          <h2 id="t-resumo">Resumo da IA</h2>
+          <div class="botoes">
+            <button class="btn" id="copiar" type="button" disabled>Copiar</button>
+            <button class="btn" id="baixar" type="button" disabled>Baixar</button>
+          </div>
+        </div>
+
+        <div class="cartao" id="cartao">
+          <p id="vazio">O resumo aparece aqui depois que você processar um documento.</p>
+          <div id="resultado" hidden>
+            <h3><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM9 12h7M9 16h7"/></svg>Resumo</h3>
+            <p id="resumo"></p>
+            <h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Pontos-chave</h3>
+            <ul id="pontos"></ul>
+            <div class="topicos-caixa">
+              <h3><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8zM7.5 7.5h.01"/></svg>Tópicos</h3>
+              <div id="topicos"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rodape">
+          <label>Tamanho do resumo
+            <select id="tamanho">
+              <option value="curto">Curto</option>
+              <option value="medio" selected>Médio</option>
+              <option value="longo">Longo</option>
+            </select>
+          </label>
+          <div>Tempo de leitura<strong id="tempo">—</strong></div>
+          <div>Arquivos de origem<strong id="origem">0</strong></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>
